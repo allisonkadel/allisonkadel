@@ -101,6 +101,7 @@ In web development, we are often interested in making our web apps dynamically r
 <br>              
 But fear not! There are ways to persist data across reqests and to maintain that data over the lifetime of a user session, effectively transofmring our stateless protocol into one that is stateful.
 <br>
+<br>                  
 In Ruby on Rails, this data can be stored in a session hash and accessed using the session method. The values in this hash in one request can be accessed in a different request using the session method. When a new user accesses the application, a new session hash is created with a session id and other key-value pairs. When a user is recognized, the relevant session information is delivered by the session hash and the user can continue to access data across requests.<br>
 <br>
 Using sessions makes it possible for us to state-ify our otherwise stateless protocol. With power comes responsibility, though, and we need to follow <a href="http://guides.rubyonrails.org/security.html#encrypted-session-storage" target="_blank", style="color: blue">safe practices</a> to prevent <a href="http://guides.rubyonrails.org/security.html#session-hijacking" target="_blank" style="color: blue">session hijacking</a>.                  
@@ -109,7 +110,7 @@ Using sessions makes it possible for us to state-ify our otherwise stateless pro
 When all goes well, sessions help us transform a fleeting connection to a lasting sharing of secrets.              
               </p>
             </a>
-            <p class="post-meta">Posted on June 4, 2018</p>
+            <p class="post-meta">Posted on June 5, 2018</p>
           </div>
           <hr>
           <!--<div class="post-preview">
