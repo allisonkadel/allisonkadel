@@ -94,15 +94,20 @@
               Stateless Protocol
               </h3>
               <p>
-This post is under construction! Get ready for some awesome ponderings about stateless protocol.<br>
+Both the internet's IP and the world wide web's HTTP use what is called a stateless protocol. This means that the sender and the receiver of data are indifferent to the state of one another and do not have knowledge of any previous states. Requests are sent and received and then forgotten about. No one is responsible for remembering requests and no data is maintained over the life of the session.<br>
 <br>                    
-
+In web development, we are often interested in making our web apps dynamically respond to user inputs and remember the state of the current user, so that things like staying logged in from page to page and maintaining a shopping cart are effortless. This demand requires persisting data across requests, which is not in the wheelhouse of a stateless protocol.
 <br>
 <br>              
-
+But fear not! There are ways to persist data across reqests and to maintain that data over the lifetime of a user session, effectively transofmring our stateless protocol into one that is stateful.
 <br>
-
-</p>
+In Ruby on Rails, this data can be stored in a session hash and accessed using the session method. The values in this hash in one request can be accessed in a different request using the session method. When a new user accesses the application, a new session hash is created with a session id and other key-value pairs. When a user is recognized, the relevant session information is delivered by the session hash and the user can continue to access data across requests.<br>
+<br>
+Using sessions makes it possible for us to state-ify our otherwise stateless protocol. With power comes responsibility, though, and we need to follow <a href="http://guides.rubyonrails.org/security.html#encrypted-session-storage" target="_blank", style="color: blue">safe practices</a> to prevent <a href="http://guides.rubyonrails.org/security.html#session-hijacking" target="_blank" style="color: blue">session hijacking</a>.                  
+<br>
+<br>                  
+When all goes well, sessions help us transform a fleeting connection to a lasting sharing of secrets.              
+              </p>
             </a>
             <p class="post-meta">Posted on June 4, 2018</p>
           </div>
