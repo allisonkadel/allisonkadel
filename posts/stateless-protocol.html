@@ -99,7 +99,7 @@ Both the internet's IP and the world wide web's HTTP use what is called a statel
 In web development, we are often interested in making our web apps dynamically respond to user inputs and remember the state of the current user, so that things like staying logged in from page to page and maintaining a shopping cart are effortless. This demand requires persisting data across requests, which is not in the wheelhouse of a stateless protocol.
 <br>
 <br>              
-But fear not! There are ways to persist data across reqests and to maintain that data over the lifetime of a user session, effectively transofmring our stateless protocol into one that is stateful.
+But fear not! By leveraging a browser's cookies, we can safely persist data across reqests and maintain that data over the lifetime of a user session, effectively transforming our stateless protocol into one that is stateful.
 <br>
 <br>                  
 In Ruby on Rails, this data can be stored in a session hash and accessed using the session method. The values in this hash in one request can be accessed in a different request using the session method. When a new user accesses the application, a new session hash is created with a session id and other key-value pairs. When a user is recognized, the relevant session information is delivered by the session hash and the user can continue to access data across requests.<br>
