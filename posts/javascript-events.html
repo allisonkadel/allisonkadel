@@ -99,20 +99,20 @@
               An important thing that a developer must consider is the order of events. Suppose a user clicks on an element on a page and two different event handlers have been watching for this event. Suppose we have some nested rectangles on a webpage that we've attached some event handlers too.
    
               <br><br>
------------------------------------------------
-|                   		           	      |
-|	                    	---------------   |   inner rectangle
-|                      		|    click <========= AND outer rectangle
-|	                        |             |   |   event handlers will
-|                   		|             |   |   notice this event
-|	                       	---------------   |   
-|            click <=============================== only outer rectangle
-|		                             	      |     event handlers will
------------------------------------------------     notice this event
+-----------------------------------
+|                   		      |
+|	        	---------------   |   inner rectangle
+|           	|    click <========= AND outer rectangle
+|	            |             |   |   event handlers will
+|           	|             |   |   notice this event
+|	           	---------------   |   
+|            click <=================== only outer rectangle
+|		                 	      |     event handlers will
+-----------------------------------     notice this event
               <br><br>
               If we click the inner rectangle, that click event is registered and we see some code execute, as instructed by our event handler. If we click the outer rectangle, not only is the outer rectangle click event registered, but the event attached to the inner rectangle is also registered. This means that two sets of code execute at the time of the click. Which one will execute first? 
               <br><br>
-                
+                  This question is about <strong>event order</strong>. There are a few models that describe this order once an event is registered and the way it can be described is in terms of event propagation direction, or in other words if subsequent events will be registered from innermost to outermost element or from outermost to inner. When <strong>event capturing</strong is used, our outer rectangle event will be registered first, followed by our nested rectangle. When <strong>event bubbling</strong> is used, the propagation moves in the opposite direction.
 
 <br>                    
 <br>
