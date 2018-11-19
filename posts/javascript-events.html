@@ -100,16 +100,16 @@
    
               <br><br>
                   <pre>
------------------------------------                             <br>
-|                   		      |                             <br>
-|	        	---------------   |   inner rectangle           <br>
-|           	|    click <========= AND outer rectangle       <br>
-|	            |             |   |   event handlers will       <br>
-|           	|             |   |   notice this event         <br>
-|	           	---------------   |                             <br>
-|            click <=================== only outer rectangle    <br>
-|		                 	      |     event handlers will     <br>
------------------------------------     notice this event       <br>
+-----------------------------------
+|                   		      |
+|	        	---------------   |   inner rectangle
+|           	|    click <========= AND outer rectangle
+|	            |             |   |   event handlers will
+|           	|             |   |   notice this event
+|	           	---------------   |
+|            click <=================== only outer rectangle
+|		                 	      |     event handlers will
+-----------------------------------     notice this event
                 </pre>
               <br><br>
               If we click the inner rectangle, that click event is registered and we see some code execute, as instructed by our event handler. If we click the outer rectangle, not only is the outer rectangle click event registered, but the event attached to the inner rectangle is also registered. This means that two sets of code execute at the time of the click. Which one will execute first? 
