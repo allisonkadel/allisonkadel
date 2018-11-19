@@ -95,6 +95,8 @@
               </h3>
               <p> Javascript, as isolating as it can be at times with its unexpected design choices, is beautiful because it can make web applications more receptive to user interaction. Javascript can detect user actions, such as mouse clicks or keystrokes, and respond in predetermined ways. We call these actions <strong>events</strong> and the code responsible for detecting them <strong>event handlers</strong>. Upon detecting an event, an event handler will execute some predetermined code that a developer has written to most likely make the software more engaging and pleasing.
               <br>
+              
+              An important thing that a developer must consider is the order of events. Suppose a user clicks on an element on a page and two different event handlers have been watching for this event.
               Suppose we want something to happen when you, the user, clicks on one of the boxes below. We would like two events to be handled: If the user clicks on the inner blue box, one things happen, but if the user clicks on the outer green box, another thing happens.
               <br> 
               Try it out. If you click the inner box, we see a message pop up, as instructed by our event handler. If we click the outer box though, not only is the outer box event registered, but the event attached to the box it contains is also registered.
