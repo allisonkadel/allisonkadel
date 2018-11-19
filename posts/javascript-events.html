@@ -113,11 +113,10 @@
               If we click the inner rectangle, that click event is registered and we see some code execute, as instructed by our event handler. If we click the outer rectangle, not only is the outer rectangle click event registered, but the event attached to the inner rectangle is also registered. This means that two sets of code execute at the time of the click. Which one will execute first? 
               <br><br>
                   This question is about <strong>event order</strong>. There are a few models that describe this order once an event is registered and the way it can be described is in terms of event propagation direction, or in other words if subsequent events will be registered from innermost to outermost element or from outermost to inner. When <strong>event capturing</strong is used, our outer rectangle event will be registered first, followed by our nested rectangle. When <strong>event bubbling</strong> is used, the propagation moves in the opposite direction.
-
-<br>                    
-<br>
-<br>              
-<br>
+               <br><br>
+               Certain browsers default to certain models, but we may have different reasons for using one or the other. <strong>Event delegation </strong>is the method of using event bubbling to attach event handlers to outer elements of the target element. This comes in handy when the event we would like to attach an event handler to does not yet exist. We will dive into this scenario in the next post.
+                <br><br>                   
+                Until then, may your events be handled, ordered, and propagated and delegated with joy!
               </p>
             <p class="post-meta">Posted on November 17, 2018</p>
           </div>
