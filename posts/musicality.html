@@ -161,9 +161,28 @@
                   
                   <br><br>
                   
-                  <img src="./img/redux-flow.png"></img>
+                  <img src="../img/redux-flow.png"></img>
                   
                   <br><br>
+             
+                    To begin with the frontend, I decided how I would structure the component tree. I built a <strong>container</strong> component (a component that talks to the <code>store</store>) for each of the lyric and song models. These components would be responsible for subscribing to the store to allow for state to be update and actions to be dispatched.
+             
+                   <br><br>
+                    <code>
+                   <App /> <br>
+                   ---<SongsContainer /> <br>
+                   ------<SongForm /> <br>
+                   ------<Songs /> <br>
+                   ---------<SongCard /> <br>
+                   ---<LyricsContainer/> <br>
+                   ------<LyricForm /> <br>                        
+                   ------<Lyrics /> <br>
+                   ---------<LyricCard />
+
+                   
+                    </code>
+                    <br><br>
+             
                   This question is about <strong>event order</strong>. There are a few models that describe this order once an event is registered and the way it can be described is in terms of event propagation direction, or in other words if subsequent events will be registered from innermost to outermost element or from outermost to inner. When <strong>event capturing</strong> is used, our outer rectangle event will be registered first, followed by our nested rectangle. When <strong>event bubbling</strong> is used, the propagation moves in the opposite direction.
                <br><br>
                Certain browsers default to certain models, but we may have different reasons for using one or the other. <strong>Event delegation </strong>is the method of using event bubbling to attach event handlers to outer elements of the target element. This comes in handy when the event we would like to attach an event handler to does not yet exist. We will dive into this scenario in a later post.
