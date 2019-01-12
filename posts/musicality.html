@@ -93,6 +93,9 @@
             <h3 class="post-title">
               Building a React-Redux App for Music Composition
               </h3>
+              
+              <img src="../img/musicality-home.png"/>
+              
               <p> 
               
               Because my current version of a music composition management system is some recordings on my cell phone here, some lyrics written in a journal there, and chord progressions jotted in the margins of that book I lost, I decided to create something that would help me record and access everything in one place.
@@ -106,28 +109,28 @@
               I started with the backend - the task of setting up a Rails API that my frontend could request data from to render to the browser. Creating the database and model relationships was a helpful excercise in translating the concept of song and lyric creation to 1s and 0s. The basic structure is: there are two models, a <strong>lyric</strong> and a <strong>song</strong>. A song has_many lyrics, and a lyric has_many songs.
               
               <br><br>
-                 
+               <pre>  
                <code>
                    # /models/song.rb <br><br>
                    
-                   class Song < ApplicationRecord <br>
-                   has_many :lyrics, dependent: :destroy <br>
-                   validates :name, :artist, :chords, :presence => :true <br>
+                   class Song < ApplicationRecord
+                        has_many :lyrics, dependent: :destroy
+                        validates :name, :artist, :chords, :presence => :true
                    end
-
                </code>
-                  
-               <br><br>
-                  
+               </pre>
+              
+               <pre>
                <code>
-                  # /models/lyric.rb <br><br>
-                  class Lyric < ApplicationRecord <br>
-                  belongs_to :song <br>
-                  validates :text, :chord, :presence => :true <br>
+                  # /models/lyric.rb
+                  
+                  class Lyric < ApplicationRecord
+                    belongs_to :song
+                    validates :text, :chord, :presence => :true
                   end
                    
                   </code>
-                  
+                  </pre>
                    
                <br><br>
                    
@@ -218,7 +221,7 @@
                                 return action.songs
 
                             case 'CREATE_SONG_SUCCESS':
-                                return state.concat(action.song) // Here's how to reducer changes the store's state!!!
+                                return state.concat(action.song) // Change store's state!!!
             
                         case 'DELETE_SONG':
                             return state.filter(song => action.id !== song.id)
@@ -231,7 +234,7 @@
                     </code>
                     </pre>
              
-                    In the event that we need to make a request to our backend to get or post some data, we can use a package called <a href="">Thunk</a> that will allow us to make an asynchronous <code>fetch()</code> request to our API and upon completion <code>dispatch()</code> an action that is a function, not just a plain object. And what is this action? Our action creator we previously created!
+                    In the event that we need to make a request to our backend to get or post some data, we can use a package called <a href="https://medium.com/fullstack-academy/thunks-in-redux-the-basics-85e538a3fe60">Thunk</a> that will allow us to make an asynchronous <code>fetch()</code> request to our API and upon completion <code>dispatch()</code> an action that is a function, not just a plain object. And what is this action? Our action creator we previously created!
              <br><br>
              
              <br><br>
@@ -265,12 +268,22 @@
              
              <br><br>
              
+             I built this type of<br>
+             <strong>[event] ---triggers---> [asynch action] ---calls---> [action creator] ---dispatches-action-to---> [reducer] ---updates---> [store]
+             <br>pattern for the songs index and create actions and even implemented full client-side CRUD functionality for lyrics. Woohoo!
+                 
+             <br><br> 
+                 
+              As I continue working, I'd like to add a Chord model to the family that possesses a has_many_through relationship to Song through Lyric so that users can interact with chord composition on a more detailed level. I'd also like to link to an external API to allow users to search for existing compositions and import them into their own library. Finally, I want to build two fun "modes" available to the user. "Muse Mode" will display all lyrics across songs in a shuffled manner and allow users to edit the lyric order and subcategorize lyrics to create fresh songs, and "Training Mode" Pitch Training will take in and process a user's pitch and evaluate how flat or sharp it is relative to a designated note and Harmony Training, will take in a tune and output a harmonized version. Gosh knows I need help with my harmonizing.
              
-                  This question is about <strong>event order</strong>. There are a few models that describe this order once an event is registered and the way it can be described is in terms of event propagation direction, or in other words if subsequent events will be registered from innermost to outermost element or from outermost to inner. When <strong>event capturing</strong> is used, our outer rectangle event will be registered first, followed by our nested rectangle. When <strong>event bubbling</strong> is used, the propagation moves in the opposite direction.
-               <br><br>
-               Certain browsers default to certain models, but we may have different reasons for using one or the other. <strong>Event delegation </strong>is the method of using event bubbling to attach event handlers to outer elements of the target element. This comes in handy when the event we would like to attach an event handler to does not yet exist. We will dive into this scenario in a later post.
-                <br><br>                   
-                Until then, may your events be handled, ordered, propagated and delegated with joy!
+             <br><br>
+                 
+                 If you're interested, here's my <a href="https://github.com/allisonkadel/musicality">github repo</a> and <a href="#">video demo</a>.
+                 
+             <br><br>
+                 
+             Thanks for listening!
+               
               </p>
             <p class="post-meta">Posted on January 12, 2019</p>
           </div>
