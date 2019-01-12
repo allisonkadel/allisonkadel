@@ -111,7 +111,7 @@
               <br><br>
                <pre>  
                <code>
-                   # /models/song.rb <br><br>
+                   # /models/song.rb
                    
                    class Song < ApplicationRecord
                         has_many :lyrics, dependent: :destroy
@@ -206,6 +206,7 @@
                          }
                     </code>
                     </pre>
+                    <br><br>
         
                     This action creator, when called, will be dispatched to the corresponding <strong>reducer</strong>:
                     <br><br>
@@ -233,6 +234,8 @@
                     }
                     </code>
                     </pre>
+                    
+                    <br><br>
              
                     In the event that we need to make a request to our backend to get or post some data, we can use a package called <a href="https://medium.com/fullstack-academy/thunks-in-redux-the-basics-85e538a3fe60">Thunk</a> that will allow us to make an asynchronous <code>fetch()</code> request to our API and upon completion <code>dispatch()</code> an action that is a function, not just a plain object. And what is this action? Our action creator we previously created!
              <br><br>
@@ -264,12 +267,14 @@
              </code>
              </pre>
              
+             <br><br>
+             
              Here's what's happening: The user clicks a submit button after entering data into a "New Song" form. A click handler attached to this event calls the <code>createSong()</code> funtion, which makes a <code>fetch()</code> request to the API, upon completion passing that response to our action creator function <code>addSong()</code>, which itself is passed in as an argument to Thunk's <code>dispatch()</code> function, and then the response is sent to the reducer, which updates the store to include the newly created song!
              
              <br><br>
              
              I built this type of<br>
-             <strong>[event] ---triggers---> [asynch action] ---calls---> [action creator] ---dispatches-action-to---> [reducer] ---updates---> [store]
+             <strong>[event] => [async action] => [action creator] => [reducer] => [store]
              <br>pattern for the songs index and create actions and even implemented full client-side CRUD functionality for lyrics. Woohoo!
                  
              <br><br> 
