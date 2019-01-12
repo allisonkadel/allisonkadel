@@ -108,15 +108,34 @@
               <br><br>
                  
                <code>
-                   # /models/song.rb
+                   # /models/song.rb <br><br>
                    
-                   class Song < ApplicationRecord
-                   has_many :lyrics, dependent: :destroy
-                   validates :name, :artist, :chords, :presence => :true
+                   class Song < ApplicationRecord <br>
+                   has_many :lyrics, dependent: :destroy <br>
+                   validates :name, :artist, :chords, :presence => :true <br>
                    end
 
                </code>
                   
+               <br><br>
+                  
+               <code>
+                   
+                  class Lyric < ApplicationRecord <br>
+                  belongs_to :song <br>
+                  validates :text, :chord, :presence => :true <br>
+                  end
+                  
+                   
+               <br><br>
+                   
+                   
+                Next I built some CRUD actions for my lyrics and songs controllers and configured the routes that I want to client side to have access to. I left the API as a simple implementation so I could focus on integrating some newly earned knowledge: React and Redux!
+                  
+                   
+                <br><br>
+                   
+                
               <br><br>
                   This question is about <strong>event order</strong>. There are a few models that describe this order once an event is registered and the way it can be described is in terms of event propagation direction, or in other words if subsequent events will be registered from innermost to outermost element or from outermost to inner. When <strong>event capturing</strong> is used, our outer rectangle event will be registered first, followed by our nested rectangle. When <strong>event bubbling</strong> is used, the propagation moves in the opposite direction.
                <br><br>
