@@ -153,7 +153,7 @@
                    
                 <br><br>
                   
-                  The basic beauty of Redux is that it provides a central location for us to manage our state, and does so in a consistent and immutable fashion.
+                  The basic beauty of Redux is that it provides a central location for us to manage our state, and does so in a consistent, immutable and communicative fashion.
                   
                  <br><br>
                   
@@ -165,7 +165,7 @@
                   
                   <br><br>
              
-                    To begin with the frontend, I decided how I would structure the component tree. I built a <strong>container</strong> component (a component that talks to the <code>store</store>) for each of the lyric and song models. These components would be responsible for subscribing to the store to allow for state to be update and actions to be dispatched.
+                    To begin with the frontend, I decided how I would structure the component tree. I built a <strong>container</strong> component (a component that talks to the <code>store</code>) for each of the lyric and song models. These components would be responsible for subscribing to the store to allow for state to be update and actions to be dispatched.
              
                    <br><br>
                     <code>
@@ -181,6 +181,30 @@
 
                    
                     </code>
+                    <br><br>
+             
+                    As mentioned, <strong>lyrics</strong> and <strong>songs</strong> each have a container to house their related components. Each of these containers connect to the store and then pass down some props to their sub-components. The Songs and SongCard as well as Lyrics and LyricCard are <strong>presentational</strong> components (responsible primarily for displaying data) that are passed important data via props. The Form components are a hybrid between container and presentational, as they subscribe to the <code>store</code> in order to keep form fields up to date as well as display the form itself.
+             
+                    <br><br>
+             
+             I built <strong>action creator</strong> functions that would be responsible for dispatching actions, and reducers that would be responsible for receiving these actions and updating the store. Here is how a new song will be added to the store:
+             
+                    <br><br>
+             
+                    <pre>
+                    <code>
+                        # /actions/songs.js
+                        
+                        const addSong = song => {
+                        return {
+                        type: 'CREATE_SONG_SUCCESS',
+                            song
+                            }
+                            }
+                        
+                    </code>
+                    </pre>
+             
                     <br><br>
              
                   This question is about <strong>event order</strong>. There are a few models that describe this order once an event is registered and the way it can be described is in terms of event propagation direction, or in other words if subsequent events will be registered from innermost to outermost element or from outermost to inner. When <strong>event capturing</strong> is used, our outer rectangle event will be registered first, followed by our nested rectangle. When <strong>event bubbling</strong> is used, the propagation moves in the opposite direction.
