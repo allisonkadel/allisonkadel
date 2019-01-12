@@ -170,14 +170,14 @@
                    <br><br>
                     <code>
                    &lt;App /&gt; <br>
-                   ---<SongsContainer /> <br>
-                   ------<SongForm /> <br>
-                   ------<Songs /> <br>
-                   ---------<SongCard /> <br>
-                   ---<LyricsContainer/> <br>
-                   ------<LyricForm /> <br>                        
-                   ------<Lyrics /> <br>
-                   ---------<LyricCard />
+                   ---&lt;SongsContainer /> <br>
+                   ------&lt;SongForm /> <br>
+                   ------&lt;Songs /> <br>
+                   ---------&lt;SongCard /> <br>
+                   ---&lt;LyricsContainer/> <br>
+                   ------&lt;LyricForm /> <br>                        
+                   ------&lt;Lyrics /> <br>
+                   ---------&lt;LyricCard />
 
                    
                     </code>
@@ -196,16 +196,66 @@
                         # /actions/songs.js
                         
                         const addSong = song => {
-                        return {
-                        type: 'CREATE_SONG_SUCCESS',
-                            song
+                            return {
+                                type: 'CREATE_SONG_SUCCESS',
+                                song
                             }
-                            }
-                        
+                         }
+                    </code>
+                    </pre>
+        
+                    This action creator, when called, will be dispatched to the corresponding <strong>reducer</strong>:
+                    <br><br>
+             
+                    <pre>
+                    <code>
+                    export default (state = [], action) => {
+                        switch(action.type) {
+
+                            case 'GET_SONGS_SUCCESS':
+                                return action.songs
+
+                            case 'CREATE_SONG_SUCCESS':
+                                return state.concat(action.song) // Here's how to reducer changes the store's state!!!
+            
+                        case 'DELETE_SONG':
+                            return state.filter(song => action.id !== song.id)
+       
+            
+                        default:
+                            return state;
+                        }
+                    }
                     </code>
                     </pre>
              
-                    <br><br>
+                    In the event that we need to make a request to our backend to get or post some data, we can use a package called <a href="">Thunk</a> that will allow us to make an asynchronous <code>fetch()</code> request to our API and upon completion <code>dispatch()</code> an action that is a function, not just a plain object. And what is this action? Our action creator we previously created!
+             <br><br>
+             
+             <br><br>
+             
+             <pre>
+             <code>
+             export const createSong = song => {
+                return dispatch => {
+                    dispatch(postRequest())
+                    return fetch('http://192.168.1.31:3000/api/v1/songs', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({song: song})
+                    })
+                    .then(response => response.json())
+                    .then(song => {
+                        dispatch(addSong(song)) // Action Creator function from before!!!
+                            dispatch(resetSongForm())
+                    })
+                    .catch(error => console.log(error))
+                }
+            }
+             </code>
+             </pre>
              
                   This question is about <strong>event order</strong>. There are a few models that describe this order once an event is registered and the way it can be described is in terms of event propagation direction, or in other words if subsequent events will be registered from innermost to outermost element or from outermost to inner. When <strong>event capturing</strong> is used, our outer rectangle event will be registered first, followed by our nested rectangle. When <strong>event bubbling</strong> is used, the propagation moves in the opposite direction.
                <br><br>
