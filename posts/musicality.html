@@ -209,6 +209,8 @@
              
                     <pre>
                     <code>
+                    # /reducers/songsReducer.js
+                    
                     export default (state = [], action) => {
                         switch(action.type) {
 
@@ -236,6 +238,8 @@
              
              <pre>
              <code>
+             # actions/songs.js
+             
              export const createSong = song => {
                 return dispatch => {
                     dispatch(postRequest())
@@ -256,6 +260,11 @@
             }
              </code>
              </pre>
+             
+             Here's what's happening: The user clicks a submit button after entering data into a "New Song" form. A click handler attached to this event calls the <code>createSong()</code> funtion, which makes a <code>fetch()</code> request to the API, upon completion passing that response to our action creator function <code>addSong()</code>, which itself is passed in as an argument to Thunk's <code>dispatch()</code> function, and then the response is sent to the reducer, which updates the store to include the newly created song!
+             
+             <br><br>
+             
              
                   This question is about <strong>event order</strong>. There are a few models that describe this order once an event is registered and the way it can be described is in terms of event propagation direction, or in other words if subsequent events will be registered from innermost to outermost element or from outermost to inner. When <strong>event capturing</strong> is used, our outer rectangle event will be registered first, followed by our nested rectangle. When <strong>event bubbling</strong> is used, the propagation moves in the opposite direction.
                <br><br>
