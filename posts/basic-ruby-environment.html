@@ -112,7 +112,66 @@
                     environment.rb
                 </code>
                 </pre>
+              
+              In <code>environment.rb</code>, we will automatically load gem dependencies with <code>Bundler.require</code> and also allow access to our object class files within lib.
+              
+              <pre>
+              <code>
+              # /config/environment.rb
+              
+              require 'bundler'
+              
+              Bundler.require
+              
+              require_all './lib
+              </code>
+              </pre>
+              
+              Now we need to make sure we have a few gems. Create a <code>Gemfile</code> within the project directory and add the gems we'll need:
                
+              <pre>
+              <code>
+              # /Gemfile
+              
+              source 'https://rubygems.org'
+              
+              gem 'rake'
+              gem 'pry'
+              gem 'require_all'
+              </code>
+              </pre>
+              
+              Next, let's create a Rakefile within our project directory so that we will be able to create a Rake console task that will start the Pry console.
+              
+              <pre>
+              <code>
+              # /Rakefile
+              
+              require_relative './config.environment'
+              
+              task :console do
+                Pry.start
+              end
+              </code>
+              </pre>
+              
+              Your directory structure should be looking something like this:
+              
+              <pre>
+              Newsletter-cli-app
+                lib
+                  newsletter.rb
+                  article.rb
+                config
+                  environment.rb
+                Gemfile
+                Rakefile
+              </pre>
+              
+              To finsish up, run <code>bundle</code> in terminal within the project directory and your depencies will install.
+              
+              Woohoo! You're done. Run <code>rake console</code> to open up the sandbox you've just created and start interacting with your objects.
+              <br>
               </p>
             <p class="post-meta">Posted on January 14, 2019</p>
           </div>
